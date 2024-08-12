@@ -1,0 +1,179 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUp Page</title>
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.3.2/mdb.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <style>
+        .bg-image-vertical {
+            position: relative;
+            overflow: hidden;
+            background-repeat: no-repeat;
+            background-position: right center;
+            background-size: auto 100%;
+        }
+
+        @media (min-width: 1025px) {
+            .h-custom-2 {
+                height: 100%;
+            }
+        }
+    </style>
+    <section class="vh-100">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-6 text-black">
+                    <div class="messages">
+                            {% if messages %}
+                                {% for message in messages %}
+                                    <div class="alert {{ message.tags }}">{{ message }}</div>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                        <style>
+                            .alert {
+                        padding: 10px;
+                        margin: 10px 0;
+                        border-radius: 5px;
+                        font-size: 16px;
+                        position: relative;
+                        animation: fadeOut 5s forwards; 
+                    }
+
+                    @keyframes fadeOut {
+                        0% {
+                            opacity: 1;
+                        }
+                        90% {
+                            opacity: 1;
+                        }
+                        100% {
+                            opacity: 0;
+                            height: 0;
+                            margin: 0;
+                            padding: 0;
+                            overflow: hidden;
+                        }
+                    }
+                    .alert.success {
+                        background-color: #d4edda;
+                        color: #155724;
+                    }
+
+                    .alert.error {
+                        background-color: #f8d7da;
+                        color: #721c24;
+                    }
+
+                    .alert.info {
+                        background-color: #d1ecf1;
+                        color: #0c5460;
+                    }
+
+                    .alert.warning {
+                        background-color: #fff3cd;
+                        color: #856404;
+                    }
+                        </style>
+                    <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
+
+                        <form method="POST" style="width: 23rem;">
+                            {% csrf_token %}
+
+                            <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Sign Up</h3>
+
+                            <div data-mdb-input-init class="form-outline mb-4">
+                                <input name="username" type="text" id="form2Example18" class="form-control form-control-lg" required/>
+                                <label class="form-label" for="form2Example18">User Name</label>
+                            </div>
+
+                            <div data-mdb-input-init class="form-outline mb-4">
+                                <input name="email" type="email" id="form2Example18" class="form-control form-control-lg" required/>
+                                <label class="form-label" for="form2Example18">Email address</label>
+                            </div>
+
+                            <div data-mdb-input-init class="form-outline mb-4">
+                                <input name="phoneno" type="number" id="form2Example28" class="form-control form-control-lg" required />
+                                <label class="form-label" for="form2Example28">Phoneno</label>
+                            </div>
+
+                            <div data-mdb-input-init class="form-outline mb-4">
+                                <input name="gender" type="text" id="form2Example28" class="form-control form-control-lg" required />
+                                <label class="form-label" for="form2Example28">Gender</label>
+                            </div>
+
+                            <div data-mdb-input-init class="form-outline mb-4">
+                                <input name="password" type="password" id="form2Example18" class="form-control form-control-lg" required/>
+                                <label class="form-label" for="form2Example18">Password</label>
+                            </div>
+
+                            <div data-mdb-input-init class="form-outline mb-4">
+                                <input name="confirmpassword" type="password" id="form2Example28" class="form-control form-control-lg" required/>
+                                <label class="form-label" for="form2Example28">Confirm Password</label>
+                            </div>
+
+                            <div class="row mb-4">
+                                <div class="col-md-6 d-flex align-items-center">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="True" id="adminCheckbox" name="is_admin" onclick="toggleCheckboxes('admin')">
+                                        <label class="form-check-label" for="adminCheckbox">
+                                            Admin
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 d-flex align-items-center">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="True" id="guardCheckbox" name="is_guard" onclick="toggleCheckboxes('guard')">
+                                        <label class="form-check-label" for="guardCheckbox">
+                                            Guard
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-dark btn-lg btn-block">Submit</button>
+                            </div>
+                            
+                        </form>
+
+                    </div>
+
+                </div>
+                <div class="col-sm-6 px-0 d-none d-sm-block">
+                    <img src="https://www.lystloc.com/blog/wp-content/uploads/2022/11/ezgif.com-gif-maker-6.webp" alt="Login image" class="w-100 vh-100"
+                        style="object-fit: cover; object-position: left;">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- MDB -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.3.2/mdb.umd.min.js"></script>
+    <script>
+    function toggleCheckboxes(selected) {
+        const adminCheckbox = document.getElementById('adminCheckbox');
+        const guardCheckbox = document.getElementById('guardCheckbox');
+
+        if (selected === 'admin') {
+            guardCheckbox.checked = false;
+        } else if (selected === 'guard') {
+            adminCheckbox.checked = false;
+        }
+    }
+</script>
+</body>
+
+</html>

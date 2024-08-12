@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Selfi Upload Attendance</h1>
+    <div class="messages">
+                            {% if messages %}
+                                {% for message in messages %}
+                                    <div class="alert {{ message.tags }}">{{ message }}</div>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                        <style>
+                            .alert {
+                        padding: 10px;
+                        margin: 10px 0;
+                        border-radius: 5px;
+                        font-size: 16px;
+                        position: relative;
+                        animation: fadeOut 5s forwards; 
+                    }
+
+                    @keyframes fadeOut {
+                        0% {
+                            opacity: 1;
+                        }
+                        90% {
+                            opacity: 1;
+                        }
+                        100% {
+                            opacity: 0;
+                            height: 0;
+                            margin: 0;
+                            padding: 0;
+                            overflow: hidden;
+                        }
+                    }
+                    .alert.success {
+                        background-color: #d4edda;
+                        color: #155724;
+                    }
+
+                    .alert.error {
+                        background-color: #f8d7da;
+                        color: #721c24;
+                    }
+
+                    .alert.info {
+                        background-color: #d1ecf1;
+                        color: #0c5460;
+                    }
+
+                    .alert.warning {
+                        background-color: #fff3cd;
+                        color: #856404;
+                    }
+                        </style>
+    <form method="POST" action="{% url 'upload_selfie' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+        <label for="selfie">Upload Selfie:</label>
+        <br>
+        <br>
+        <input type="file" name="selfie" id="selfie" required>
+        <br>
+        <br>
+        <button type="submit">Upload</button>
+    </form>
+    <br>
+    <br>
+    <a href="{% url 'logout' %}">Logout</a>
+</body>
+</html>
